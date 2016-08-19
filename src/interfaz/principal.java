@@ -38,6 +38,8 @@ public class principal extends javax.swing.JFrame {
         txtnumero1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         txtresultado = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cmboperacion = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +56,7 @@ public class principal extends javax.swing.JFrame {
         jPanel1.add(txtnumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
         jLabel4.setText("resultado");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
         cmdcalcular.setText("calcular");
         cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -62,10 +64,15 @@ public class principal extends javax.swing.JFrame {
                 cmdcalcularActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+        jPanel1.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         cmdborrar.setText("borrar");
-        jPanel1.add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
+        cmdborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdborrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         txtnumero1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +89,13 @@ public class principal extends javax.swing.JFrame {
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 50, -1));
 
         txtresultado.setEditable(false);
-        jPanel1.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 50, -1));
+        jPanel1.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 50, -1));
+
+        jLabel3.setText("operacion");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+
+        cmboperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "suma \t", "resta ", "multiplicacion", "division ", " " }));
+        jPanel1.add(cmboperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,20 +117,34 @@ public class principal extends javax.swing.JFrame {
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
 
-        String num1, num2, res;
-        int n1, n2, suma;
+        String num1, num2;
+        double n1, n2, resultado;
+        int operacion;
         
-        num1=txtnumero1.getText();
-        num2=txtnumero2.getText();
         
-        n1=Integer.parseInt(num1);
-        n2=Integer.parseInt(num2);
         
-        suma= n1+n2;
+        n1=Double.parseDouble(txtnumero1.getText());
+        n2=Double.parseDouble(txtnumero2.getText());
+        operacion=cmboperacion.getSelectedIndex();
+        switch(operacion){
+            case 0:
+                resultado=n1+n2;
+            break;
+            case 1:
+                resultado=n1-n2;
+            break;
+            case 2:
+                resultado=n1*n2;
+            break;
+            case 3:
+                resultado=n1/n2;
+            break;    
+        }
+         
+        resultado =String.valueOf(resultado);
         
-        res=String.valueOf(suma);
         
-        txtresultado.setText(""+res);
+        txtresultado.setText(resultado);
         
       
     // TODO add your handling code here:
@@ -126,6 +153,14 @@ public class principal extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void cmdborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrarActionPerformed
+        // TODO add your handling code here:
+        txtnumero1.setText("");
+        txtnumero2.setText("");
+        txtresultado.setText("");
+        
+    }//GEN-LAST:event_cmdborrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,10 +198,12 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmboperacion;
     private javax.swing.JButton cmdborrar;
     private javax.swing.JButton cmdcalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
