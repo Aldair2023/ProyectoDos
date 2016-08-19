@@ -73,7 +73,15 @@ public class principal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtnumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 70, -1));
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 50, -1));
+
+        txtresultado.setEditable(false);
         jPanel1.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 50, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,8 +103,29 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumero1ActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-        // TODO add your handling code here:
+
+        String num1, num2, res;
+        int n1, n2, suma;
+        
+        num1=txtnumero1.getText();
+        num2=txtnumero2.getText();
+        
+        n1=Integer.parseInt(num1);
+        n2=Integer.parseInt(num2);
+        
+        suma= n1+n2;
+        
+        res=String.valueOf(suma);
+        
+        txtresultado.setText(""+res);
+        
+      
+    // TODO add your handling code here:
     }//GEN-LAST:event_cmdcalcularActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
