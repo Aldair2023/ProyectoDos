@@ -6,6 +6,8 @@
 
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author amoreno15
@@ -79,11 +81,21 @@ public class principal extends javax.swing.JFrame {
                 txtnumero1ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtnumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 70, -1));
+        txtnumero1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnumero1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtnumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 70, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
             }
         });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 50, -1));
@@ -101,11 +113,11 @@ public class principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
         );
 
         pack();
@@ -117,12 +129,30 @@ public class principal extends javax.swing.JFrame {
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
 
-        String num1, num2;
-        double n1, n2, resultado;
-        int operacion;
+        String num1, num2, res;
+        double n1=0, n2=0, resultado=0;
+        int operacion=0;
+        
+        if(txtnumero1.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"digite el numero", "Error",JOptionPane. ERROR_MESSAGE);
+            txtnumero1.requestFocusInWindow();
+            
+        }else if(txtnumero2.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"digite el numero", "Error",JOptionPane. ERROR_MESSAGE);
+            txtnumero2.requestFocusInWindow();
+        }else 
+            
+            if(operacion == 3 && n2 == 0){
+                JOptionPane.showMessageDialog(this,"no digite cero en el segundo numero", "Error",JOptionPane. ERROR_MESSAGE);
+                txtnumero2.requestFocusInWindow();
+                txtnumero2.selectAll();
+                
+                
+            }
         
         
         
+            
         n1=Double.parseDouble(txtnumero1.getText());
         n2=Double.parseDouble(txtnumero2.getText());
         operacion=cmboperacion.getSelectedIndex();
@@ -140,11 +170,13 @@ public class principal extends javax.swing.JFrame {
                 resultado=n1/n2;
             break;    
         }
-         
-        resultado =String.valueOf(resultado);
+        {
+            
+        }
+        res=String.valueOf(resultado);
         
         
-        txtresultado.setText(resultado);
+        txtresultado.setText(res);
         
       
     // TODO add your handling code here:
@@ -161,6 +193,32 @@ public class principal extends javax.swing.JFrame {
         txtresultado.setText("");
         
     }//GEN-LAST:event_cmdborrarActionPerformed
+
+    private void txtnumero1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumero1KeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+          } 
+    }//GEN-LAST:event_txtnumero1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();
+          }
+          
+    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments
